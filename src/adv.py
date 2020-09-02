@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +50,31 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+name = input("Enter your name\n")
+
+player = Player(name, room['outside'])
+
+
+while True:
+    print(f"Current room: {player.room.name}\n {player.room.description}")
+
+    player_input = input("Choose a direction, north, south, east or west: ").lower()
+
+    if player_input == 'n' or player_input == 's' or player_input == 'e' or player_input == 'w' or player_input == 'q':
+        if player_input == "n":
+            player.room = player.room.n_to
+        elif player_input == 's':
+            player.room = player.room.s_to
+        elif player_input == 'e':
+            player.room = player.room.e_to
+        elif player_input == 'w':
+            player.room = player.room.w_to
+        elif player_input == 'q':
+            print('See you next time')
+        break
+    else:
+        print("Enter a direction")
+
+
+
